@@ -9,8 +9,18 @@ use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
-    public function index(){
-        $contacts = Contact::all();
+
+    public function __construct(){
+        $this->middleware('auth')->except('index');
+    }
+
+    public function index(Request $request){
+        $search = $request->get('search');
+        $contacts = Contact::where('name', 'like', '%' . $search . '%')
+            ->orWhere('contact', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->paginate(10);
+
         return view('contacts.index', compact('contacts'));
     }
 
@@ -20,7 +30,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request){
         Contact::create($request->validated());
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('success', 'Contato salvo com sucesso!');
     }
 
     public function show(Contact $contact){
@@ -36,8 +46,12 @@ class ContactController extends Controller
         return redirect()->route('contacts.index');
     }
 
+    public function confirmDestroy(Contact $contact){
+        return view('contacts.destroy', compact('contact'));
+    }
+
     public function destroy(Contact $contact){
         $contact->delete();
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('success', 'Contato excluído com sucesso!');
     }
 }

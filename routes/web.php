@@ -28,7 +28,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
     Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
     Route::put('/contacts/{contact}', [ContactController::class, 'update'])->name('contacts.update');
+    Route::get('/contacts/{contact}/destroy', [ContactController::class, 'confirmDestroy'])->name('contacts.confirmDestroy');
     Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 });
 
 Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
