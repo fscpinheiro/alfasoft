@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Facades\Log;
+
 
 
 class ContactController extends Controller
@@ -38,12 +40,16 @@ class ContactController extends Controller
     }
 
     public function edit(Contact $contact){
+        Log::info('Edit method was called');
         return view('contacts.edit', compact('contact'));
     }
 
     public function update(ContactRequest $request, Contact $contact){
+        Log::info('Update method was called');
+        Log::info('Request: '.$request);
+        Log::info('Contact: '.$contact);
         $contact->update($request->validated());
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('success', 'Contato atualizado com sucesso!');
     }
 
     public function confirmDestroy(Contact $contact){

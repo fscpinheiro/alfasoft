@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Adicionar Contato</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Criar Contato</span>
+                    <a href="{{ route('contacts.index') }}" class="btn btn-primary">Voltar para a página inicial</a>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('contacts.store') }}">

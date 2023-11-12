@@ -5,12 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Atualizar Contato</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Atualizar Contato</span>
+                    <a href="{{ route('contacts.index') }}" class="btn btn-primary">Voltar para a página inicial</a>
+                </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('contacts.update', $contact) }}">
+                    <form method="POST" action="{{ route('contacts.update', $contact->id) }}">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
 
                         <div class="form-group">
                             <label for="name">Nome</label>
