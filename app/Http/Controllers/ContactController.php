@@ -40,14 +40,10 @@ class ContactController extends Controller
     }
 
     public function edit(Contact $contact){
-        Log::info('Edit method was called');
         return view('contacts.edit', compact('contact'));
     }
 
     public function update(ContactRequest $request, Contact $contact){
-        Log::info('Update method was called');
-        Log::info('Request: '.$request);
-        Log::info('Contact: '.$contact);
         $contact->update($request->validated());
         return redirect()->route('contacts.index')->with('success', 'Contato atualizado com sucesso!');
     }
