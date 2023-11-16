@@ -14,13 +14,10 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/', [ContactController::class, 'index']);
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/roadmap', [ContactController::class, 'roadmap'])->name('roadmap');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');

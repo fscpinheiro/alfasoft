@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Contatos</span>
-                    <a href="{{ route('contacts.create') }}" class="btn btn-primary">Criar novo contato</a>
+                    <span><i class="fas fa-address-book"></i>  Contatos</span>
+                    <a href="{{ route('contacts.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Criar novo contato"><i class="fas fa-user-plus"></i> Criar novo contato</a>
                 </div>
 
                 <div class="card-body">
@@ -15,14 +15,12 @@
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" placeholder="Pesquisar contatos" value="{{ request('search') }}">
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                <a href="{{ route('contacts.index') }}" class="btn btn-secondary"><i class="fas fa-times"></i></a>
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Procurar Nome, Contato ou e-mail."><i class="fas fa-search"></i></button>
+                                <a href="{{ route('contacts.index') }}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Limpar pesquisa"><i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </form>
-                    <div class="d-flex justify-content-center my-3">
-                        {{ $contacts->links() }}
-                    </div>
+                    <hr>
                     <table class="table">
                         <thead>
                             <tr>

@@ -6,26 +6,42 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Registro: {{ $contact->name }}</span>
-                    <a href="{{ route('contacts.index') }}" class="btn btn-primary">Voltar para a página inicial</a>
+                    <span><i class="fas fa-eye"></i> Detalhe do Contato</span>
+                    @include('components.btback')
                 </div>
 
                 <div class="card-body">
-                    <p><strong>ID:</strong> {{ $contact->id }}</p>
-                    <p><strong>Nome:</strong> {{ $contact->name }}</p>
-                    <p><strong>Contato:</strong> {{ $contact->contact }}</p>
-                    <p><strong>Email:</strong> {{ $contact->email }}</p>
-
-                    <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-link btn-sm" aria-label="Editar" data-bs-original-title="Editar">
-                        <i class="fas fa-edit"></i> Editar
-                    </a>
-                    <form action="{{ route('contacts.destroy', $contact) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-link text-danger btn-sm" aria-label="Deletar" data-bs-original-title="Deletar">
+                   
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="width: 15%;">ID</th>
+                                <td>{{ $contact->id }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 15%;">Nome</th>
+                                <td>{{ $contact->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 15%;">Contato</th>
+                                <td>{{ $contact->contact }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 15%;">Email</th>
+                                <td>{{ $contact->email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{{ route('contacts.edit', $contact) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Contato">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a href="{{ route('contacts.confirmDestroy', $contact) }}" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir Contato">
                             <i class="fas fa-trash-alt"></i> Deletar
-                        </button>
-                    </form>
+                        </a>
+                    </div>
+                   
                 </div>
             </div>
         </div>
